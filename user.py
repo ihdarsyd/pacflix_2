@@ -51,3 +51,19 @@ class User:
         print("List Benefit and Plan from Pacflix")
         print("")
         print(tabulate(self.list_benefit, self.headers))
+
+    def check_user_plan(self):
+        """
+        Fungsi untuk menampilkan plan dan benefit dari current_plan user
+        """
+
+        if(self.current_plan):
+            print(f"{self.username} sedang berlangganan {self.current_plan}")
+            print("Benefit")
+
+            idx_current_plan = self.list_plan.index(self.current_plan)
+            headers_user = [self.headers[idx_current_plan],self.headers[-1]]
+            benefit_user = [[row[idx_current_plan], row[-1]] for row in self.list_benefit]
+            print(tabulate(benefit_user, headers_user))
+        else:
+            print("anda belum berlangganan")
