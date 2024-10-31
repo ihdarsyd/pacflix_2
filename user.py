@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 class User:
     # Data User
     data_user = {
@@ -39,3 +41,13 @@ class User:
                 self.duration_plan = value[2]
                 self.kode_referral = value[3]
                 break
+
+    def check_all_plan(self):
+        """
+        Fungsi ini digunakan untuk mencetak plan dan benefit 
+
+        input: None
+        """
+        print("List Benefit and Plan from Pacflix")
+        print("")
+        print(tabulate(self.list_benefit, self.headers))
