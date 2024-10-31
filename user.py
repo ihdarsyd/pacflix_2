@@ -67,3 +67,38 @@ class User:
             print(tabulate(benefit_user, headers_user))
         else:
             print("anda belum berlangganan")
+
+    def upgrade_plan(self,new_plan):
+        """
+        Fungsi untuk melakukan upgrade plan baru
+
+        input: new_plan(str)
+        """
+        if(self.current_plan is not None and new_plan in self.list_plan):
+            idx_current_plan = self.list_plan.index(self.current_plan)
+            idx_new_plan = self.list_plan.index(new_plan)
+
+            if(idx_new_plan > idx_current_plan):
+                # Do upgrade
+                if (self.duration_plan > 12):
+                    # mendapatkan diskon
+                    total = self.list_benefit[-1][idx_new_plan] - (self.list_benefit[-1][idx_new_plan]*0.05)
+                else:
+                    total = self.list_benefit[-1][idx_new_plan]
+                print(f"Harga Upgrade ke {new_plan} adalah Rp.{total}")
+
+                #Update data user
+                self.current_plan = new_plan
+                for key, value in self.data_user.items():
+                    if(self.username == value[0]):
+                        self.data_user[key][1] = new_plan
+                        break
+
+            elif(idx_current_plan == idx_new_plan):
+                print(f"Anda sedang berlangganan {new_plan}")
+            else:
+                print(f"Anda tidak downgrade ke {new_plan}")
+        elif(new_plan not in self.list_plan) :
+            print("New Plan tidak tersedia")
+        elif(self.current_plan is None):
+            print("Silakan berlangganan terlebih dahulu")       
