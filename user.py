@@ -10,7 +10,7 @@ class User:
         5: ["Shania", "Basic Plan", 6, 'shania-123']
     }
 
-
+    print("test")
     # Data list_plan
     list_plan = ["Basic Plan", "Standard Plan", "Premium Plan"]
     list_benefit = [[True, True, True, "Bisa Stream"],
